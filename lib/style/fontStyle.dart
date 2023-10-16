@@ -12,3 +12,9 @@ ButtonStyle kTextButtonStyle1 = TextButton.styleFrom(
 ButtonStyle kTextButtonStyle2 = TextButton.styleFrom(
   foregroundColor: Colors.red,
 );
+
+TextStyle kFontH1 = const TextStyle(
+    fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white);
+
+TextStyle kFontH2 = const TextStyle(
+    fontWeight: FontWeight.normal, fontSize: 14, color: Colors.white);

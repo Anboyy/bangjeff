@@ -1,18 +1,16 @@
-import 'package:bangjeff/pages/lupa_password.dart';
-import 'package:bangjeff/pages/main_pages/dashboard.dart';
+import 'package:bangjeff/pages/lupa_pasword_konfirmasi.dart';
 import 'package:bangjeff/pages/register_page.dart';
 import 'package:bangjeff/style/fontStyle.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LupaPassword extends StatefulWidget {
+  const LupaPassword({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LupaPassword> createState() => _LupaPasswordState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  bool __obscurePassword = false;
+class _LupaPasswordState extends State<LupaPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +35,9 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           icon: Icon(
                             Icons.arrow_back_ios,
                             color: Colors.white,
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                             top: 10.0,
                           ),
                           child: Text(
-                            "Masuk",
+                            "Lupa Kata Sandi",
                             style: kFontH1,
                           ),
                         ),
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                             top: 10.0,
                           ),
                           child: Text(
-                            "Masuk dengan akun yang terdafter.",
+                            "Masukan nomor Whatsapp anda.",
                             style: kFontH2,
                           ),
                         ),
@@ -82,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
@@ -98,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: TextFormField(
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
-                                      Icons.person,
+                                      Icons.phone,
                                       color: Colors.red,
                                     ),
                                     contentPadding: EdgeInsets.symmetric(
@@ -107,7 +108,8 @@ class _LoginPageState extends State<LoginPage> {
                                       horizontal:
                                           20, // Perkecil ukuran TextFormField
                                     ),
-                                    hintText: 'Masukkan Username', // Teks hint
+                                    hintText:
+                                        'Masukkan Nomor Telepon/Whatsapp', // Teks hint
                                     hintStyle: TextStyle(
                                       fontSize:
                                           14, // Ukuran teks hint yang lebih kecil
@@ -122,87 +124,15 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(0),
-                            child: Card(
-                              elevation:
-                                  5, // Tingkat elevasi (mengatur efek mengambang)
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(15), // Rounded
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: TextFormField(
-                                  obscureText:
-                                      !__obscurePassword ? true : false,
-                                  decoration: InputDecoration(
-                                    suffixIcon: IconButton(
-                                      icon: !__obscurePassword
-                                          ? Icon(Icons.visibility)
-                                          : Icon(Icons.visibility_off),
-                                      onPressed: () {
-                                        setState(() {
-                                          __obscurePassword =
-                                              !__obscurePassword;
-                                        });
-                                      },
-                                    ),
-                                    prefixIcon: const Icon(
-                                      Icons.key,
-                                      color: Colors.red,
-                                    ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      vertical:
-                                          15, // Ukuran teks label yang lebih kecil
-                                      horizontal:
-                                          20, // Perkecil ukuran TextFormField
-                                    ),
-                                    hintText: 'Masukkan Password', // Teks hint
-                                    hintStyle: const TextStyle(
-                                      fontSize:
-                                          14, // Ukuran teks hint yang lebih kecil
-                                    ),
-                                    border: InputBorder
-                                        .none, // Hilangkan border bawaan
-                                    filled: true,
-                                    fillColor: Colors
-                                        .transparent, // Warna latar belakang form
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              const Spacer(),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LupaPassword(),
-                                    ),
-                                  );
-                                },
-                                child: const Text(
-                                  "Lupa kata sandi?",
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red,
                             ),
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Dashboard(),
+                                  builder: (context) => KonfirmasiLupa(),
                                 ),
                               );
                             },
@@ -210,7 +140,21 @@ class _LoginPageState extends State<LoginPage> {
                               padding: EdgeInsets.symmetric(
                                 vertical: 16.0,
                               ),
-                              child: Text("Login"),
+                              child: Text("Kirim Kode OTP"),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.0,
+                              vertical: 15.0,
+                            ),
+                            child: Text(
+                              "Kode OTP akan dikirimkan ke nomer Whatsapp, pastikan cek Whatsapp setelah anda menekan kirim.",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF5A5A60),
+                                fontSize: 15,
+                              ),
                             ),
                           ),
                         ],
@@ -228,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          "Sudah punya akun?",
+                          "Menyerah karena lupa?",
                           style: TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.normal,
