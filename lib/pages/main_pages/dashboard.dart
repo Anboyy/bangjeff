@@ -1,3 +1,4 @@
+import 'package:bangjeff/pages/main_pages/artikel_page.dart';
 import 'package:bangjeff/pages/main_pages/dashboardPage.dart';
 import 'package:bangjeff/pages/main_pages/top_up_page.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class _DashboardState extends State<Dashboard> {
         children: [
           DashboardPage(),
           TopUpPage(),
+          Artikel(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -41,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book_sharp),
-            label: 'Pengaturan',
+            label: 'Artikel',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

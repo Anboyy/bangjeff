@@ -45,7 +45,7 @@ class _TopUpPageState extends State<TopUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.zero,
+                      padding: EdgeInsets.symmetric(vertical: 20),
                       child: Text(
                         "Mari Top Up",
                         style: TextStyle(
