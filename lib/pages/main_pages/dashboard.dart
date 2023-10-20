@@ -1,5 +1,6 @@
 import 'package:bangjeff/pages/main_pages/artikel_page.dart';
 import 'package:bangjeff/pages/main_pages/dashboardPage.dart';
+import 'package:bangjeff/pages/main_pages/profile_page.dart';
 import 'package:bangjeff/pages/main_pages/top_up_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,11 +27,13 @@ class _DashboardState extends State<Dashboard> {
         index: _selectedIndex,
         children: [
           DashboardPage(),
-          TopUpPage(),
-          Artikel(),
+          const TopUpPage(),
+          const Artikel(),
+          const ProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.red[900],
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

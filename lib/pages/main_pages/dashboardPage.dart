@@ -53,9 +53,12 @@ class _DashboardPageState extends State<DashboardPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Hallo, Yawan Divta",
-                            style: TextStyle(fontSize: 24, color: Colors.white),
+                            style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                           Ink(
                             decoration: const ShapeDecoration(
@@ -66,12 +69,12 @@ class _DashboardPageState extends State<DashboardPage> {
                               borderRadius: BorderRadius.circular(50.0),
                               onTap: () {},
                               child: Container(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.red[300],
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.grid_view_rounded,
                                   size: 32,
                                   color: Colors.white,
@@ -99,7 +102,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   onChanged: (value) {
                                     setState(() {});
                                   },
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     hintText: 'Cari...',
                                     border: InputBorder.none,
                                   ),
@@ -107,7 +110,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.search),
+                              icon: const Icon(Icons.search),
                               onPressed: () {},
                             ),
                           ],
@@ -172,7 +175,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: Container(
                                     height: 100,
                                     width: 100,
-                                    margin: EdgeInsets.all(8.0),
+                                    margin: const EdgeInsets.all(8.0),
                                     child: Image.asset(
                                       imageUrls[index],
                                       fit: BoxFit.fill,
@@ -183,24 +186,24 @@ class _DashboardPageState extends State<DashboardPage> {
                                   "_Nama Game",
                                   style: kFontSubtitle,
                                 ),
-                                Text("Developer")
+                                const Text("Developer")
                               ],
                             );
                           },
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 9.0),
+                        padding: const EdgeInsets.all(0),
                         child: Row(
                           children: [
                             Text(
                               "Game Lainnya",
                               style: kFontTitle,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             TextButton(
                               onPressed: () {},
-                              child: Text("Lihat Semua"),
+                              child: const Text("Lihat Semua"),
                             )
                           ],
                         ),

@@ -30,20 +30,28 @@ class _ArtikelState extends State<Artikel> {
   Widget build(BuildContext context) {
     final List<Widget> ArtikelWidget = [
       ArtikelCard(
-          title: "title",
-          subtitle: "subtitle",
+          jenis: "game",
+          title:
+              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
+          subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
       ArtikelCard(
-          title: "title",
-          subtitle: "subtitle",
+          jenis: "game",
+          title:
+              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
+          subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
       ArtikelCard(
-          title: "title",
-          subtitle: "subtitle",
+          jenis: "game",
+          title:
+              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
+          subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
       ArtikelCard(
-          title: "title",
-          subtitle: "subtitle",
+          jenis: "game",
+          title:
+              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
+          subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
     ];
     return SafeArea(
@@ -69,8 +77,11 @@ class _ArtikelState extends State<Artikel> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.0),
                       child: Text(
-                        "Hallo, Yawan Divta",
-                        style: TextStyle(fontSize: 24, color: Colors.white),
+                        "Artikel",
+                        style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                     Padding(
@@ -130,7 +141,7 @@ class _ArtikelState extends State<Artikel> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.25,
+                        height: MediaQuery.of(context).size.height * 0.35,
                         child: CarouselSlider(
                           items: ArtikelWidget,
                           options: CarouselOptions(
@@ -140,7 +151,7 @@ class _ArtikelState extends State<Artikel> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 9.0),
+                        padding: const EdgeInsets.all(0),
                         child: Row(
                           children: [
                             Text(

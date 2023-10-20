@@ -1,4 +1,3 @@
-import 'package:bangjeff/style/fontStyle.dart';
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
@@ -35,11 +34,13 @@ class ArtikelCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String alamatImage;
+  final String jenis;
 
   ArtikelCard({
     required this.title,
     required this.subtitle,
     required this.alamatImage,
+    required this.jenis,
   });
 
   @override
@@ -54,16 +55,25 @@ class ArtikelCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
           ),
-          elevation: 5,
+          elevation: 3,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                flex: 6,
+                flex: 5,
                 child: Image.asset(
                   alamatImage,
                   fit: BoxFit.fitWidth,
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    jenis,
+                  ),
                 ),
               ),
               Expanded(
@@ -72,12 +82,15 @@ class ArtikelCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
                     title,
-                    style: kFontTitle,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(subtitle),
