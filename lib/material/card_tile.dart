@@ -64,7 +64,7 @@ class ArtikelCard extends StatelessWidget {
                 flex: 5,
                 child: Image.asset(
                   alamatImage,
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
