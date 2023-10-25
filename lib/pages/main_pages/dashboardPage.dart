@@ -1,3 +1,4 @@
+import 'package:bangjeff/pages/detailPages/detail_game.dart';
 import 'package:flutter/material.dart';
 import 'package:bangjeff/material/card_tile.dart';
 import 'package:bangjeff/style/fontStyle.dart';
@@ -170,15 +171,25 @@ class _DashboardPageState extends State<DashboardPage> {
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Container(
-                                    height: 100,
-                                    width: 100,
-                                    margin: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      imageUrls[index],
-                                      fit: BoxFit.fill,
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailGamePage(),
+                                      ),
+                                    );
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Container(
+                                      height: 100,
+                                      width: 100,
+                                      margin: const EdgeInsets.all(8.0),
+                                      child: Image.asset(
+                                        imageUrls[index],
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
                                   ),
                                 ),
