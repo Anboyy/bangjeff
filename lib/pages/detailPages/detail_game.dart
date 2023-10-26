@@ -8,8 +8,12 @@ class DetailGamePage extends StatefulWidget {
   State<DetailGamePage> createState() => _DetailGamePageState();
 }
 
+enum pembayaran { promo1, promo2, special1, special2 }
+
 class _DetailGamePageState extends State<DetailGamePage> {
   int selectedCardIndex = -1;
+  bool isClicked = false;
+  int selectedItemIndex = -1;
 
   final List<String> items = List<String>.generate(4, (i) => 'Item ${i + 1}');
   final String gameName = "Mobile Legend";
@@ -115,51 +119,45 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                     Expanded(
                                       child: TextFormField(
                                         decoration: const InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(
-                                            vertical:
-                                                15, // Ukuran teks label yang lebih kecil
-                                            horizontal:
-                                                20, // Perkecil ukuran TextFormField
-                                          ),
-                                          hintText:
-                                              'Masukan nama lengkap', // Teks hint
-                                          hintStyle: TextStyle(
-                                            fontSize:
-                                                14, // Ukuran teks hint yang lebih kecil
-                                          ),
-                                          border: InputBorder
-                                              .none, // Hilangkan border bawaan
-                                          filled: true,
-                                          fillColor: Color.fromARGB(
-                                              250, 245, 235, 235),
-                                        ),
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                              vertical:
+                                                  15, // Ukuran teks label yang lebih kecil
+                                              horizontal:
+                                                  20, // Perkecil ukuran TextFormField
+                                            ),
+                                            hintText:
+                                                'Masukan nama lengkap', // Teks hint
+                                            hintStyle: TextStyle(
+                                              fontSize:
+                                                  14, // Ukuran teks hint yang lebih kecil
+                                            ),
+                                            border: InputBorder
+                                                .none, // Hilangkan border bawaan
+                                            filled: true,
+                                            fillColor: Colors.black38),
                                       ),
                                     ),
                                     Expanded(
                                       child: TextFormField(
                                         decoration: const InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(
-                                            vertical:
-                                                15, // Ukuran teks label yang lebih kecil
-                                            horizontal:
-                                                20, // Perkecil ukuran TextFormField
-                                          ),
-                                          hintText:
-                                              'Masukan nama lengkap', // Teks hint
-                                          hintStyle: TextStyle(
-                                            fontSize:
-                                                14, // Ukuran teks hint yang lebih kecil
-                                          ),
-                                          border: InputBorder
-                                              .none, // Hilangkan border bawaan
-                                          filled: true,
-                                          fillColor: Color.fromARGB(
-                                            250,
-                                            245,
-                                            235,
-                                            235,
-                                          ), // Warna latar belakang form
-                                        ),
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                              vertical:
+                                                  15, // Ukuran teks label yang lebih kecil
+                                              horizontal:
+                                                  20, // Perkecil ukuran TextFormField
+                                            ),
+                                            hintText:
+                                                'Masukan nama lengkap', // Teks hint
+                                            hintStyle: TextStyle(
+                                              fontSize:
+                                                  14, // Ukuran teks hint yang lebih kecil
+                                            ),
+                                            border: InputBorder
+                                                .none, // Hilangkan border bawaan
+                                            filled: true,
+                                            fillColor: Colors.black38),
                                       ),
                                     ),
                                   ],
@@ -178,7 +176,7 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 const Text(
@@ -188,10 +186,10 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                     fontSize: 14,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Row(
+                                const Row(
                                   children: [
                                     Expanded(
                                       child: NominalCard(),
@@ -201,7 +199,7 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 const Text(
@@ -211,10 +209,10 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                     fontSize: 14,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Row(
+                                const Row(
                                   children: [
                                     Expanded(
                                       child: NominalCard(),
@@ -224,7 +222,7 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 const Text(
@@ -234,7 +232,7 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                     fontSize: 14,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Container(
@@ -242,14 +240,18 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                       MediaQuery.of(context).size.height * 0.5,
                                   child: GridView.builder(
                                     gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       childAspectRatio: 2.5,
                                     ),
                                     itemCount: 5,
                                     itemBuilder: (context, index) {
                                       // Fungsi itemBuilder untuk membangun setiap item dalam grid
-                                      return NominalCard();
+                                      return InkWell(
+                                          onTap: () {
+                                            selectedItemIndex = index;
+                                          },
+                                          child: const NominalCard());
                                     },
                                   ),
                                 ),
