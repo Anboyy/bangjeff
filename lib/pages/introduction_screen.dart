@@ -22,29 +22,29 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             children: [
               Center(
                 child: Image(
-                  image: AssetImage("assets/images/intro1.png"),
+                  image: const AssetImage("assets/images/intro1.png"),
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.4,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 8),
+                padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 8),
                 child: Text(
                   "Harga paling murah se Indonesia dan ramah dikantong",
                   style: kFontTitle,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
+                padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
                 child: Text(
                   "Harga termurah se-Indonesia, aman dikantong pelajar, tidak perlu resah! Bebas pilih mau top up yang mana sesukamu!",
                   style: kFontSubtitle,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],
@@ -57,29 +57,29 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             children: [
               Center(
                 child: Image(
-                  image: AssetImage("assets/images/intro2.png"),
+                  image: const AssetImage("assets/images/intro2.png"),
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.4,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 8),
+                padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 8),
                 child: Text(
                   "Pengiriman sangat cepat dan aman, tidak menunggu lama",
                   style: kFontTitle,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
+                padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
                 child: Text(
                   "Dijamin pengiriman sangat cepat, secepat kedipan mata, kalian transfer langsung sampai, jangan khawatir jangan risau!",
                   style: kFontSubtitle,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],
@@ -92,29 +92,29 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             children: [
               Center(
                 child: Image(
-                  image: AssetImage("assets/images/intro3.png"),
+                  image: const AssetImage("assets/images/intro3.png"),
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.4,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 8),
+                padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 8),
                 child: Text(
                   "Bayar bisa pakai apa aja dan lengkap! ",
                   style: kFontTitle,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
+                padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
                 child: Text(
                   "Pembayaran lengkap, melalui e-wallet maupun transfer bank, semakin banyak pilihan metode pembayaran yang membuatmu lebih gampang!",
                   style: kFontSubtitle,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],
@@ -122,7 +122,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
       ],
       showBackButton: true,
-      back: Text("sebelumnya"),
+      back: const Text("sebelumnya"),
       skip: const Icon(Icons.skip_next),
       next: const Text("Selanjutnya"),
       done: const Icon(
@@ -135,7 +135,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => LoginPage(),
+            builder: (context) => const LoginPage(),
           ),
         );
       },

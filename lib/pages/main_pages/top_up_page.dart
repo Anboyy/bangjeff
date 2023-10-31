@@ -174,7 +174,7 @@ class _TopUpPageState extends State<TopUpPage> {
                       Container(
                         padding: EdgeInsets.all(16),
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
+                        height: MediaQuery.of(context).size.height * 0.8,
                         child: GridView.builder(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(

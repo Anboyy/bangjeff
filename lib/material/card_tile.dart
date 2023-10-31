@@ -1,3 +1,4 @@
+import 'package:bangjeff/pages/detailPages/detail_game.dart';
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
@@ -13,17 +14,24 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // margin: EdgeInsets.all(8.0),
-      child: ListTile(
-        leading: Image.asset(alamatImage),
-        title: Text(
-          title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: TextStyle(fontSize: 14, color: Colors.grey),
+    return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: ((context) => DetailGamePage())));
+      },
+      child: Card(
+        elevation: 4,
+        // margin: EdgeInsets.all(8.0),
+        child: ListTile(
+          leading: Image.asset(alamatImage),
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            subtitle,
+            style: TextStyle(fontSize: 14, color: Colors.grey),
+          ),
         ),
       ),
     );

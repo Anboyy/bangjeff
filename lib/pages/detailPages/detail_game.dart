@@ -1,3 +1,4 @@
+import 'package:bangjeff/pages/main_pages/detailed_pages/detail_buy.dart';
 import 'package:bangjeff/style/nominal_card.dart';
 import 'package:flutter/material.dart';
 
@@ -246,7 +247,6 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                     ),
                                     itemCount: 5,
                                     itemBuilder: (context, index) {
-                                      // Fungsi itemBuilder untuk membangun setiap item dalam grid
                                       return InkWell(
                                           onTap: () {
                                             selectedItemIndex = index;
@@ -271,7 +271,14 @@ class _DetailGamePageState extends State<DetailGamePage> {
                 padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
                   child: const Text("Beli"),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BuyDetail(),
+                      ),
+                    );
+                  },
                 ),
               ),
             )

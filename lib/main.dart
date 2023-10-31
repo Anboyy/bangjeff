@@ -15,14 +15,17 @@ class MyApp extends StatelessWidget {
       initialRoute:
           '/', // Rute awal, bisa diganti dengan rute lain jika diperlukan
       routes: {
-        '/': (context) => SplashScreen(), // Rute untuk splash screen
+        '/': (context) => const SplashScreen(), // Rute untuk splash screen
       },
     );
   }
 }
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -32,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -63,9 +66,9 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Image(
                 width: MediaQuery.of(context).size.width * 0.25,
-                image: AssetImage('assets/images/logo.png'),
+                image: const AssetImage('assets/images/logo.png'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),
