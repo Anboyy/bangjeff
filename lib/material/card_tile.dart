@@ -1,12 +1,14 @@
-import 'package:bangjeff/pages/detailPages/detail_game.dart';
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String alamatImage;
+  final VoidCallback route;
 
-  MyCard({
+  const MyCard({
+    super.key,
+    required this.route,
     required this.title,
     required this.subtitle,
     required this.alamatImage,
@@ -15,22 +17,20 @@ class MyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: ((context) => DetailGamePage())));
-      },
+      onTap: route,
       child: Card(
         elevation: 4,
-        // margin: EdgeInsets.all(8.0),
         child: ListTile(
-          leading: Image.asset(alamatImage),
+          leading: Image.asset(
+            alamatImage,
+          ),
           title: Text(
             title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
           subtitle: Text(
             subtitle,
-            style: TextStyle(fontSize: 14, color: Colors.grey),
+            style: const TextStyle(fontSize: 12, color: Colors.grey),
           ),
         ),
       ),
@@ -39,12 +39,15 @@ class MyCard extends StatelessWidget {
 }
 
 class ArtikelCard extends StatelessWidget {
+  final VoidCallback route;
   final String title;
   final String subtitle;
   final String alamatImage;
   final String jenis;
 
-  ArtikelCard({
+  const ArtikelCard({
+    super.key,
+    required this.route,
     required this.title,
     required this.subtitle,
     required this.alamatImage,
@@ -54,8 +57,8 @@ class ArtikelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
-      child: Container(
+      onTap: route,
+      child: SizedBox(
         width: double.infinity,
         height: 50,
         child: Card(
@@ -90,8 +93,8 @@ class ArtikelCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 16,
+                    style: const TextStyle(
+                      fontSize: 13,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

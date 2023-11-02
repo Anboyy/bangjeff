@@ -197,7 +197,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                   "_Nama Game",
                                   style: kFontSubtitle,
                                 ),
-                                const Text("Developer")
+                                Text(
+                                  "Developer",
+                                  style: kFontSubtitle,
+                                )
                               ],
                             );
                           },
@@ -220,21 +223,53 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailGamePage()),
+                            ),
+                          );
+                        },
                         title: 'Card 1',
                         subtitle: 'Subtitle 1',
                         alamatImage: 'assets/images/promo.png',
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailGamePage()),
+                            ),
+                          );
+                        },
                         title: 'Card 2',
                         subtitle: 'Subtitle 2',
                         alamatImage: 'assets/images/promo.png',
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailGamePage()),
+                            ),
+                          );
+                        },
                         title: 'Card 3',
                         subtitle: 'Subtitle 3',
                         alamatImage: 'assets/images/promo.png',
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailGamePage()),
+                            ),
+                          );
+                        },
                         title: 'Card 4',
                         subtitle: 'Subtitle 4',
                         alamatImage: 'assets/images/promo.png',

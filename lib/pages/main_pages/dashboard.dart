@@ -13,24 +13,37 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
+  PageController _pageController = PageController();
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _pageController.jumpToPage(index);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
+      body: PageView(
+        controller: _pageController,
         children: [
           DashboardPage(),
           const TopUpPage(),
           const Artikel(),
           const ProfilePage(),
         ],
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.red[900],

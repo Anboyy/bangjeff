@@ -30,7 +30,7 @@ class _DetailGamePageState extends State<DetailGamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -236,7 +236,7 @@ class _DetailGamePageState extends State<DetailGamePage> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Container(
+                                SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height * 0.5,
                                   child: GridView.builder(

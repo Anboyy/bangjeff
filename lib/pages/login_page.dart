@@ -31,14 +31,14 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(
                 flex: 4,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_ios,
                             color: Colors.white,
                           ),
@@ -139,8 +139,8 @@ class _LoginPageState extends State<LoginPage> {
                                   decoration: InputDecoration(
                                     suffixIcon: IconButton(
                                       icon: !__obscurePassword
-                                          ? Icon(Icons.visibility)
-                                          : Icon(Icons.visibility_off),
+                                          ? const Icon(Icons.visibility)
+                                          : const Icon(Icons.visibility_off),
                                       onPressed: () {
                                         setState(() {
                                           __obscurePassword =
@@ -181,7 +181,8 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => LupaPassword(),
+                                      builder: (context) =>
+                                          const LupaPassword(),
                                     ),
                                   );
                                 },
@@ -202,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Dashboard(),
+                                  builder: (context) => const Dashboard(),
                                 ),
                               );
                             },
@@ -235,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         GestureDetector(
-                          child: Text(
+                          child: const Text(
                             " Daftar Sekarang",
                             style: TextStyle(
                                 color: Colors.red, fontWeight: FontWeight.bold),
@@ -244,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => RegisterPage(),
+                                builder: (context) => const RegisterPage(),
                               ),
                             );
                           },

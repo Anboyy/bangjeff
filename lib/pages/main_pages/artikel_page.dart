@@ -1,7 +1,9 @@
 import 'package:bangjeff/material/card_tile.dart';
+import 'package:bangjeff/pages/main_pages/detailed_pages/detailed_artikel.dart';
 import 'package:bangjeff/style/fontStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Artikel extends StatefulWidget {
   const Artikel({super.key});
@@ -30,24 +32,56 @@ class _ArtikelState extends State<Artikel> {
   Widget build(BuildContext context) {
     final List<Widget> ArtikelWidget = [
       ArtikelCard(
+          route: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => DetailedArtikel()),
+              ),
+            );
+          },
           jenis: "game",
           title:
               "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
           subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
       ArtikelCard(
+          route: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => DetailedArtikel()),
+              ),
+            );
+          },
           jenis: "game",
           title:
               "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
           subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
       ArtikelCard(
+          route: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => DetailedArtikel()),
+              ),
+            );
+          },
           jenis: "game",
           title:
               "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
           subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
       ArtikelCard(
+          route: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => DetailedArtikel()),
+              ),
+            );
+          },
           jenis: "game",
           title:
               "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
@@ -150,38 +184,87 @@ class _ArtikelState extends State<Artikel> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Row(
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
                           children: [
-                            Text(
-                              "Game Lainnya",
-                              style: kFontTitle,
-                            ),
-                            Spacer(),
                             TextButton(
                               onPressed: () {},
-                              child: Text("Lihat Semua"),
-                            )
+                              child: Text("Semua"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text("Semua"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text("Semua"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text("Semua"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text("Semua"),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text("Semua"),
+                            ),
                           ],
                         ),
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailedArtikel()),
+                            ),
+                          );
+                        },
                         title: 'Card 1',
                         subtitle: 'Subtitle 1',
                         alamatImage: 'assets/images/promo.png',
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailedArtikel()),
+                            ),
+                          );
+                        },
                         title: 'Card 2',
                         subtitle: 'Subtitle 2',
                         alamatImage: 'assets/images/promo.png',
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailedArtikel()),
+                            ),
+                          );
+                        },
                         title: 'Card 3',
                         subtitle: 'Subtitle 3',
                         alamatImage: 'assets/images/promo.png',
                       ),
                       MyCard(
+                        route: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => DetailedArtikel()),
+                            ),
+                          );
+                        },
                         title: 'Card 4',
                         subtitle: 'Subtitle 4',
                         alamatImage: 'assets/images/promo.png',
