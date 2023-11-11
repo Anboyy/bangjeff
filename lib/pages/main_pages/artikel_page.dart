@@ -49,65 +49,6 @@ class _ArtikelState extends State<Artikel> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> ArtikelWidget = [
-      ArtikelCard(
-          route: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => DetailedArtikel()),
-              ),
-            );
-          },
-          jenis: "game",
-          title:
-              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
-          subtitle: "2 jam",
-          alamatImage: 'assets/images/promo.png'),
-      ArtikelCard(
-          route: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => DetailedArtikel()),
-              ),
-            );
-          },
-          jenis: "game",
-          title:
-              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
-          subtitle: "2 jam",
-          alamatImage: 'assets/images/promo.png'),
-      ArtikelCard(
-          route: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => DetailedArtikel()),
-              ),
-            );
-          },
-          jenis: "game",
-          title:
-              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
-          subtitle: "2 jam",
-          alamatImage: 'assets/images/promo.png'),
-      ArtikelCard(
-          route: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => DetailedArtikel()),
-              ),
-            );
-          },
-          jenis: "game",
-          title:
-              "akun dengan User name Katou Megumi menduduki top 1 global Ruby",
-          subtitle: "2 jam",
-          alamatImage: 'assets/images/promo.png'),
-    ];
-
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(
@@ -196,64 +137,83 @@ class _ArtikelState extends State<Artikel> {
                       Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.35,
-                        child: CarouselSlider(
-                          items: _listArtikel.map((item) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Card(
-                                  elevation: 5,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      Expanded(
-                                        flex: 9,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            child: Image.network(
-                                              item.image.toString(),
-                                              fit: BoxFit.fitWidth,
-                                            ),
+                        child: InkWell(
+                          child: CarouselSlider(
+                            items: _listArtikel.map((item) {
+                              return Builder(
+                                builder: (BuildContext context) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => DetailedArtikel(
+                                            artikelModel: item,
                                           ),
                                         ),
+                                      );
+                                    },
+                                    child: Card(
+                                      elevation: 5,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Expanded(
+                                            flex: 9,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                child: Image.network(
+                                                  item.image.toString(),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                              flex: 1,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8),
+                                                child: Text("Game"),
+                                              )),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8),
+                                              child:
+                                                  Text(item.title.toString()),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8),
+                                              child: Text("2 Jam"),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Expanded(
-                                          flex: 1,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 8),
-                                            child: Text("Game"),
-                                          )),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8),
-                                          child: Text(item.title.toString()),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8),
-                                          child: Text("2 Jam"),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          }).toList(),
-                          options: CarouselOptions(
-                            autoPlay: true,
-                            height: double.infinity,
+                                    ),
+                                  );
+                                },
+                              );
+                            }).toList(),
+                            options: CarouselOptions(
+                              autoPlay: true,
+                              height: double.infinity,
+                            ),
                           ),
                         ),
                       ),
@@ -292,12 +252,12 @@ class _ArtikelState extends State<Artikel> {
                       ),
                       MyCard(
                         route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailedArtikel()),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: ((context) => DetailedArtikel()),
+                          //   ),
+                          // );
                         },
                         title: 'Card 1',
                         subtitle: 'Subtitle 1',
@@ -305,12 +265,12 @@ class _ArtikelState extends State<Artikel> {
                       ),
                       MyCard(
                         route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailedArtikel()),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: ((context) => DetailedArtikel()),
+                          //   ),
+                          // );
                         },
                         title: 'Card 2',
                         subtitle: 'Subtitle 2',
@@ -318,12 +278,12 @@ class _ArtikelState extends State<Artikel> {
                       ),
                       MyCard(
                         route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailedArtikel()),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: ((context) => DetailedArtikel()),
+                          //   ),
+                          // );
                         },
                         title: 'Card 3',
                         subtitle: 'Subtitle 3',
@@ -331,12 +291,12 @@ class _ArtikelState extends State<Artikel> {
                       ),
                       MyCard(
                         route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailedArtikel()),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: ((context) => DetailedArtikel()),
+                          //   ),
+                          // );
                         },
                         title: 'Card 4',
                         subtitle: 'Subtitle 4',

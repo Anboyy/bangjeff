@@ -1,8 +1,10 @@
+import 'package:bangjeff/model/list_artikel_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DetailedArtikel extends StatelessWidget {
-  const DetailedArtikel({super.key});
+  final ListArtikelModel artikelModel;
+  const DetailedArtikel({super.key, required this.artikelModel});
 
   @override
   Widget build(BuildContext context) {
@@ -13,28 +15,37 @@ class DetailedArtikel extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                decoration: const BoxDecoration(
+                height: MediaQuery.of(context).size.height * 0.2,
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/images/promo.png'),
-                      fit: BoxFit.fitWidth),
+                      image: NetworkImage(artikelModel.image.toString()),
+                      fit: BoxFit.cover),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios),
-                    ),
-                    const Text('Detailed Article'),
-                    IconButton(
-                      onPressed: () {
-                        _showPaymentMethodMenu(context);
-                      },
-                      icon: const Icon(Icons.share),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(Icons.arrow_back_ios),
+                          ),
+                          Text('Detailed Article'),
+                          IconButton(
+                            onPressed: () {
+                              _showPaymentMethodMenu(context);
+                            },
+                            icon: const Icon(Icons.share),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
