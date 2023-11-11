@@ -5,7 +5,6 @@ import 'package:bangjeff/service/list_artikel_service.dart';
 import 'package:bangjeff/style/fontStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class Artikel extends StatefulWidget {
   const Artikel({super.key});

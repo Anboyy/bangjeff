@@ -1,9 +1,11 @@
+import 'package:bangjeff/model/list_game_model.dart';
 import 'package:bangjeff/pages/main_pages/detailed_pages/detail_buy.dart';
 import 'package:bangjeff/style/nominal_card.dart';
 import 'package:flutter/material.dart';
 
 class DetailGamePage extends StatefulWidget {
-  const DetailGamePage({super.key});
+  final ListGameModel listGameModel;
+  const DetailGamePage({super.key, required this.listGameModel});
 
   @override
   State<DetailGamePage> createState() => _DetailGamePageState();

@@ -2,7 +2,6 @@ import 'package:bangjeff/model/list_game_model.dart';
 import 'package:bangjeff/pages/detailPages/detail_game.dart';
 import 'package:bangjeff/service/list_game_service.dart';
 import 'package:flutter/material.dart';
-import 'package:bangjeff/material/card_tile.dart';
 import 'package:bangjeff/style/fontStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -19,10 +18,9 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    getGame(); // Call getGame during initialization.
+    getGame();
   }
 
-  // Declare getGame as an async method and await the asynchronous operation.
   Future<void> getGame() async {
     ListGameService _service = ListGameService();
     final value = await _service.getGameData();
@@ -145,7 +143,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
                                 url,
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                               ),
                             );
                           },
@@ -195,7 +193,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => DetailGamePage(),
+                                        builder: (context) => DetailGamePage(
+                                          listGameModel: _listGame,
+                                        ),
                                       ),
                                     );
                                   },
@@ -207,7 +207,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       margin: const EdgeInsets.all(8.0),
                                       child: Image.network(
                                         _listGame[index].image.toString(),
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
@@ -241,57 +241,30 @@ class _DashboardPageState extends State<DashboardPage> {
                           ],
                         ),
                       ),
-                      MyCard(
-                        route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailGamePage()),
-                            ),
-                          );
-                        },
-                        title: 'Card 1',
-                        subtitle: 'Subtitle 1',
-                        alamatImage: 'assets/images/promo.png',
-                      ),
-                      MyCard(
-                        route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailGamePage()),
-                            ),
-                          );
-                        },
-                        title: 'Card 2',
-                        subtitle: 'Subtitle 2',
-                        alamatImage: 'assets/images/promo.png',
-                      ),
-                      MyCard(
-                        route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailGamePage()),
-                            ),
-                          );
-                        },
-                        title: 'Card 3',
-                        subtitle: 'Subtitle 3',
-                        alamatImage: 'assets/images/promo.png',
-                      ),
-                      MyCard(
-                        route: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => DetailGamePage()),
-                            ),
-                          );
-                        },
-                        title: 'Card 4',
-                        subtitle: 'Subtitle 4',
-                        alamatImage: 'assets/images/promo.png',
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        child: ListView.builder(
+                          itemCount: _listGame.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              child: Card(
+                                child: ListTile(
+                                  leading: Image(
+                                    image: NetworkImage(
+                                      _listGame[index].image.toString(),
+                                    ),
+                                  ),
+                                  title: Text(
+                                    _listGame[index].nama_produk.toString(),
+                                  ),
+                                  subtitle: Text(
+                                    _listGame[index].pengembang.toString(),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
