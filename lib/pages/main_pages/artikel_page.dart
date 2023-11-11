@@ -1,5 +1,7 @@
 import 'package:bangjeff/material/card_tile.dart';
+import 'package:bangjeff/model/list_artikel_model.dart';
 import 'package:bangjeff/pages/main_pages/detailed_pages/detailed_artikel.dart';
+import 'package:bangjeff/service/list_artikel_service.dart';
 import 'package:bangjeff/style/fontStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,8 @@ class Artikel extends StatefulWidget {
 }
 
 class _ArtikelState extends State<Artikel> {
+  List<ListArtikelModel> _listArtikel = [];
+
   final List<String> imageUrls = [
     'assets/images/promo.png',
     'assets/images/promo.png',
@@ -27,6 +31,21 @@ class _ArtikelState extends State<Artikel> {
     'assets/images/promo.png',
     'assets/images/promo.png'
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    getArtikel(); // Call getGame during initialization.
+  }
+
+  // Declare getGame as an async method and await the asynchronous operation.
+  Future<void> getArtikel() async {
+    ListArtikelService _service = ListArtikelService();
+    final value = await _service.getArtikelData();
+    setState(() {
+      _listArtikel = value!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +107,7 @@ class _ArtikelState extends State<Artikel> {
           subtitle: "2 jam",
           alamatImage: 'assets/images/promo.png'),
     ];
+
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(
@@ -177,7 +197,60 @@ class _ArtikelState extends State<Artikel> {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.35,
                         child: CarouselSlider(
-                          items: ArtikelWidget,
+                          items: _listArtikel.map((item) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Card(
+                                  elevation: 5,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Expanded(
+                                        flex: 9,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: Image.network(
+                                              item.image.toString(),
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            child: Text("Game"),
+                                          )),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: Text(item.title.toString()),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: Text("2 Jam"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList(),
                           options: CarouselOptions(
                             autoPlay: true,
                             height: double.infinity,

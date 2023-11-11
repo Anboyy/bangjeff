@@ -1,17 +1,36 @@
+import 'package:bangjeff/model/list_game_model.dart';
 import 'package:bangjeff/pages/detailPages/detail_game.dart';
+import 'package:bangjeff/service/list_game_service.dart';
 import 'package:flutter/material.dart';
 import 'package:bangjeff/material/card_tile.dart';
 import 'package:bangjeff/style/fontStyle.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class DashboardPage extends StatefulWidget {
-  DashboardPage({super.key});
+  DashboardPage({Key? key}) : super(key: key);
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  List<ListGameModel> _listGame = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getGame(); // Call getGame during initialization.
+  }
+
+  // Declare getGame as an async method and await the asynchronous operation.
+  Future<void> getGame() async {
+    ListGameService _service = ListGameService();
+    final value = await _service.getGameData();
+    setState(() {
+      _listGame = value!;
+    });
+  }
+
   final List<String> imageUrls = [
     'assets/images/promo.png',
     'assets/images/promo.png',
@@ -167,7 +186,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         height: MediaQuery.of(context).size.height * 0.25,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: imageUrls.length,
+                          itemCount: _listGame.length,
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
@@ -186,19 +205,19 @@ class _DashboardPageState extends State<DashboardPage> {
                                       height: 100,
                                       width: 100,
                                       margin: const EdgeInsets.all(8.0),
-                                      child: Image.asset(
-                                        imageUrls[index],
+                                      child: Image.network(
+                                        _listGame[index].image.toString(),
                                         fit: BoxFit.fill,
                                       ),
                                     ),
                                   ),
                                 ),
                                 Text(
-                                  "_Nama Game",
+                                  _listGame[index].nama_produk.toString(),
                                   style: kFontSubtitle,
                                 ),
                                 Text(
-                                  "Developer",
+                                  _listGame[index].pengembang.toString(),
                                   style: kFontSubtitle,
                                 )
                               ],
@@ -216,7 +235,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             ),
                             const Spacer(),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () async {},
                               child: const Text("Lihat Semua"),
                             )
                           ],
