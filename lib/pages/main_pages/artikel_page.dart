@@ -1,4 +1,3 @@
-import 'package:bangjeff/material/card_tile.dart';
 import 'package:bangjeff/model/list_artikel_model.dart';
 import 'package:bangjeff/pages/main_pages/detailed_pages/detailed_artikel.dart';
 import 'package:bangjeff/service/list_artikel_service.dart';
@@ -15,21 +14,6 @@ class Artikel extends StatefulWidget {
 
 class _ArtikelState extends State<Artikel> {
   List<ListArtikelModel> _listArtikel = [];
-
-  final List<String> imageUrls = [
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png'
-  ];
 
   @override
   void initState() {
@@ -249,57 +233,46 @@ class _ArtikelState extends State<Artikel> {
                           ],
                         ),
                       ),
-                      MyCard(
-                        route: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: ((context) => DetailedArtikel()),
-                          //   ),
-                          // );
-                        },
-                        title: 'Card 1',
-                        subtitle: 'Subtitle 1',
-                        alamatImage: 'assets/images/promo.png',
-                      ),
-                      MyCard(
-                        route: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: ((context) => DetailedArtikel()),
-                          //   ),
-                          // );
-                        },
-                        title: 'Card 2',
-                        subtitle: 'Subtitle 2',
-                        alamatImage: 'assets/images/promo.png',
-                      ),
-                      MyCard(
-                        route: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: ((context) => DetailedArtikel()),
-                          //   ),
-                          // );
-                        },
-                        title: 'Card 3',
-                        subtitle: 'Subtitle 3',
-                        alamatImage: 'assets/images/promo.png',
-                      ),
-                      MyCard(
-                        route: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: ((context) => DetailedArtikel()),
-                          //   ),
-                          // );
-                        },
-                        title: 'Card 4',
-                        subtitle: 'Subtitle 4',
-                        alamatImage: 'assets/images/promo.png',
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        child: ListView.builder(
+                          itemCount: _listArtikel.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              child: Card(
+                                child: ListTile(
+                                  leading: Image(
+                                    image: NetworkImage(
+                                      _listArtikel[index].image.toString(),
+                                    ),
+                                  ),
+                                  title: Text(
+                                    _listArtikel[index]
+                                        .title!
+                                        .substring(0, 10)
+                                        .toString(),
+                                  ),
+                                  subtitle: Text(
+                                    _listArtikel[index]
+                                        .subtitle!
+                                        .substring(0, 10)
+                                        .toString(),
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailedArtikel(
+                                      artikelModel: _listArtikel[index],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),

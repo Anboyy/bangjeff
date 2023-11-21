@@ -194,7 +194,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => DetailGamePage(
-                                          listGameModel: _listGame,
+                                          listGameModel: _listGame[index],
                                         ),
                                       ),
                                     );
@@ -262,6 +262,16 @@ class _DashboardPageState extends State<DashboardPage> {
                                   ),
                                 ),
                               ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailGamePage(
+                                      listGameModel: _listGame[index],
+                                    ),
+                                  ),
+                                );
+                              },
                             );
                           },
                         ),

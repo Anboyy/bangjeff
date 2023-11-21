@@ -10,7 +10,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData baseTheme = ThemeData.light();
+    ThemeData redTheme = baseTheme.copyWith(
+      primaryColor: Colors.red,
+      primaryColorLight: Colors.red,
+      appBarTheme: baseTheme.appBarTheme.copyWith(
+        backgroundColor: Colors.red, // Atur warna AppBar di sini
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red, // Atur warna ElevatedButton di sini
+        ),
+      ),
+    );
     return MaterialApp(
+      theme: redTheme,
       debugShowCheckedModeBanner: false,
       initialRoute:
           '/', // Rute awal, bisa diganti dengan rute lain jika diperlukan
