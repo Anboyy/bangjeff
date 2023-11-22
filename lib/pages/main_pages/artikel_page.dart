@@ -15,6 +15,17 @@ class Artikel extends StatefulWidget {
 class _ArtikelState extends State<Artikel> {
   List<ListArtikelModel> _listArtikel = [];
 
+  List<String> categories = const [
+    "Impedit",
+    "Edison McGlynn",
+    "RPG",
+    "MMO RPG",
+    "HORROR",
+    "ADVENTURE",
+  ];
+
+  List<String> selectedCategory = [];
+
   @override
   void initState() {
     super.initState();
@@ -32,6 +43,11 @@ class _ArtikelState extends State<Artikel> {
 
   @override
   Widget build(BuildContext context) {
+    final filterArtikel = _listArtikel.where((product) {
+      // Menggunakan product.nama_produk sebagai elemen pembanding
+      return selectedCategory.isEmpty ||
+          selectedCategory.contains(product.title);
+    }).toList();
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(
@@ -200,44 +216,48 @@ class _ArtikelState extends State<Artikel> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.05,
                         child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: Text("Semua"),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text("Semua"),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text("Semua"),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text("Semua"),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text("Semua"),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text("Semua"),
-                            ),
-                          ],
-                        ),
+                            scrollDirection: Axis.horizontal,
+                            children: categories
+                                .map(
+                                  (category) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 6,
+                                    ),
+                                    child: FilterChip(
+                                      selected:
+                                          selectedCategory.contains(category),
+                                      label: Text(category),
+                                      onSelected: (selected) {
+                                        setState(
+                                          () {
+                                            selected
+                                                ? selectedCategory.add(category)
+                                                : selectedCategory
+                                                    .remove(category);
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                )
+                                .toList()),
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.3,
                         child: ListView.builder(
-                          itemCount: _listArtikel.length,
+                          itemCount: filterArtikel.length,
                           itemBuilder: (context, index) {
+                            final artikelList = filterArtikel[index];
                             return InkWell(
                               child: Card(
                                 child: ListTile(
@@ -247,14 +267,12 @@ class _ArtikelState extends State<Artikel> {
                                     ),
                                   ),
                                   title: Text(
-                                    _listArtikel[index]
-                                        .title!
+                                    artikelList.title!
                                         .substring(0, 10)
                                         .toString(),
                                   ),
                                   subtitle: Text(
-                                    _listArtikel[index]
-                                        .subtitle!
+                                    artikelList.subtitle!
                                         .substring(0, 10)
                                         .toString(),
                                   ),
@@ -265,7 +283,7 @@ class _ArtikelState extends State<Artikel> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => DetailedArtikel(
-                                      artikelModel: _listArtikel[index],
+                                      artikelModel: artikelList,
                                     ),
                                   ),
                                 );

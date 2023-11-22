@@ -1,5 +1,4 @@
 import 'package:bangjeff/model/list_artikel_model.dart';
-import 'package:bangjeff/service/list_artikel_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -12,20 +11,9 @@ class DetailedArtikel extends StatefulWidget {
 }
 
 class _DetailedArtikelState extends State<DetailedArtikel> {
-  List<ListArtikelModel> _listArtikel = [];
-
   @override
   void initState() {
     super.initState();
-    getArtikel();
-  }
-
-  Future<void> getArtikel() async {
-    ListArtikelService _service = ListArtikelService();
-    final value = await _service.getArtikelData();
-    setState(() {
-      _listArtikel = value!;
-    });
   }
 
   @override

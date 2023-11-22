@@ -13,20 +13,16 @@ class TopUpPage extends StatefulWidget {
 class _TopUpPageState extends State<TopUpPage> {
   List<ListGameModel> _listgame = [];
 
-  final List<String> imageUrls = [
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png',
-    'assets/images/promo.png'
+  List<String> categories = const [
+    "Hellen Barton",
+    "Edison McGlynn",
+    "RPG",
+    "MMO RPG",
+    "HORROR",
+    "ADVENTURE",
   ];
+
+  List<String> selectedCategory = [];
 
   bool shouldScrollParent = true; // Variable untuk mengontrol guliran parent
   final ScrollController _scrollController = ScrollController();
@@ -58,6 +54,11 @@ class _TopUpPageState extends State<TopUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final filterGame = _listgame.where((product) {
+      // Menggunakan product.nama_produk sebagai elemen pembanding
+      return selectedCategory.isEmpty ||
+          selectedCategory.contains(product.nama_produk);
+    }).toList();
     return SafeArea(
       child: Scaffold(
         body: NotificationListener<ScrollNotification>(
@@ -194,38 +195,32 @@ class _TopUpPageState extends State<TopUpPage> {
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.width * 0.1,
                               child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text('Semua'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text('Semua'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text('Semua'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text('Semua'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text('Semua'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text('Semua'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text('Semua'),
-                                  )
-                                ],
-                              ),
+                                  scrollDirection: Axis.horizontal,
+                                  children: categories
+                                      .map(
+                                        (category) => Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 6),
+                                          child: FilterChip(
+                                            selected: selectedCategory
+                                                .contains(category),
+                                            label: Text(category),
+                                            onSelected: (selected) {
+                                              setState(
+                                                () {
+                                                  print(filterGame);
+                                                  selected
+                                                      ? selectedCategory
+                                                          .add(category)
+                                                      : selectedCategory
+                                                          .remove(category);
+                                                },
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      )
+                                      .toList()),
                             ),
                           ),
                           Container(
@@ -240,8 +235,9 @@ class _TopUpPageState extends State<TopUpPage> {
                                 crossAxisSpacing: 20.0,
                                 mainAxisSpacing: 20.0,
                               ),
-                              itemCount: _listgame.length,
+                              itemCount: filterGame.length,
                               itemBuilder: (context, index) {
+                                final gameList = filterGame[index];
                                 return InkWell(
                                   onTap: () {},
                                   child: Column(
@@ -252,7 +248,7 @@ class _TopUpPageState extends State<TopUpPage> {
                                           borderRadius:
                                               BorderRadius.circular(20),
                                           child: Image.network(
-                                            _listgame[index].image.toString(),
+                                            gameList.image.toString(),
                                             fit: BoxFit.fill,
                                           ),
                                         ),
@@ -260,17 +256,16 @@ class _TopUpPageState extends State<TopUpPage> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          _listgame[index]
-                                              .nama_produk
-                                              .toString(),
+                                          gameList.nama_produk.toString(),
+                                          // _listgame[index]
+                                          //     .nama_produk
+                                          //     .toString(),
                                         ),
                                       ),
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          _listgame[index]
-                                              .pengembang
-                                              .toString(),
+                                          gameList.pengembang.toString(),
                                         ),
                                       ),
                                     ],

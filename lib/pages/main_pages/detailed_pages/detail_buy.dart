@@ -64,36 +64,53 @@ class _BuyDetailState extends State<BuyDetail> {
                             Text(
                               method.name,
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                             ),
                             SizedBox(height: 8),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: Colors.black54),
+                            ExpansionTile(
+                              title: Text(
+                                method.name.toString(),
                               ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      method.selectedOption ??
-                                          'Pilih Metode Pembayaran',
-                                      style:
-                                          TextStyle(color: Colors.deepPurple),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      _showPaymentMethodMenu(context, method);
-                                    },
-                                    child: Icon(Icons.arrow_drop_down),
-                                  ),
-                                ],
-                              ),
+                              children: method.options.map((value) {
+                                return ListTile(
+                                  title: Text(value),
+                                  trailing: Text("50.000"),
+                                  onTap: () {
+                                    setState(() {
+                                      method.selectedOption = value;
+                                    });
+                                  },
+                                );
+                              }).toList(),
+                              onExpansionChanged: (value) {},
                             ),
+                            // Container(
+                            //   height: MediaQuery.of(context).size.height * 0.15,
+                            //   padding: const EdgeInsets.symmetric(
+                            //       horizontal: 16, vertical: 8),
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(20),
+                            //     border: Border.all(color: Colors.black54),
+                            //   ),
+                            //   child: Row(
+                            //     children: [
+                            //       Expanded(
+                            //         child: Text(
+                            //           method.selectedOption ??
+                            //               'Pilih Metode Pembayaran',
+                            //           style:
+                            //               TextStyle(color: Colors.deepPurple),
+                            //         ),
+                            //       ),
+                            //       InkWell(
+                            //         onTap: () {
+                            //           _showPaymentMethodMenu(context, method);
+                            //         },
+                            //         child: Icon(Icons.arrow_drop_down),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                             SizedBox(height: 16),
                           ],
                         );
