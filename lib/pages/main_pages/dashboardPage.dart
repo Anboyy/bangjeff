@@ -15,10 +15,42 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   List<ListGameModel> _listGame = [];
 
+  final List<String> myCoolStrings = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Some other item'
+  ];
+
+  FocusNode _focusNode = FocusNode();
+  final List<String> _results = [];
+
+  bool isTextFieldFocused = false;
+
+  TextEditingController _searchController = TextEditingController();
+
+  void _handleSearch(String input) {
+    _results.clear();
+    for (var str in myCoolStrings) {
+      if (str.toLowerCase().contains(input.toLowerCase())) {
+        setState(() {
+          _results.add(str);
+        });
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+
+    // Tambahkan pemantauan pada _searchController
     getGame();
+    _searchController.addListener(() {
+      setState(
+          () {}); // Memicu pembaharuan tampilan saat nilai _searchController berubah
+    });
   }
 
   Future<void> getGame() async {
@@ -117,8 +149,10 @@ class _DashboardPageState extends State<DashboardPage> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 8),
                                 child: TextField(
+                                  controller: _searchController,
+                                  focusNode: _focusNode,
                                   onChanged: (value) {
-                                    setState(() {});
+                                    _handleSearch(value);
                                   },
                                   decoration: const InputDecoration(
                                     hintText: 'Cari...',
@@ -127,14 +161,45 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                              icon: const Icon(Icons.search),
-                              onPressed: () {},
-                            ),
+                            _focusNode.hasFocus
+                                ? IconButton(
+                                    icon: const Icon(Icons.clear),
+                                    onPressed: () {
+                                      setState(() {
+                                        _searchController.text = '';
+                                        _results.clear();
+                                      });
+                                    },
+                                  )
+                                : IconButton(
+                                    icon: const Icon(Icons.search),
+                                    onPressed: () {
+                                      setState(() {
+                                        _results.clear();
+                                      });
+                                    },
+                                  ),
                           ],
                         ),
                       ),
                     ),
+                    _results.isNotEmpty
+                        ? Container(
+                            height: MediaQuery.of(context).size.height *
+                                0.1 *
+                                _results.length,
+                            child: ListView.builder(
+                              itemCount: _results.length,
+                              itemBuilder: (context, index) {
+                                final data = _results[index];
+                                return ListTile(
+                                  leading: const Icon(Icons.list),
+                                  title: Text(data),
+                                );
+                              },
+                            ),
+                          )
+                        : Container(),
                     CarouselSlider(
                       items: imageUrls.map((url) {
                         return Builder(
